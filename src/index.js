@@ -16,12 +16,10 @@ import GenreArtists from './components/GenreArtists';
 // import reducers from "./reducers";
 import 'antd/dist/antd.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-// import "http://diegoddox.github.io/react-redux-modal/0.5/react-redux-modal.min.css"
 import './index.css';
 
-// import "@fortawesome/fontawesome-free/css/all.min.css";
-const store = createStore(reducers, applyMiddleware(promiseMiddleware));
-// const store = createStore(reducers, applyMiddleware(promiseMiddleware));
+import {store} from './utils/store';
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

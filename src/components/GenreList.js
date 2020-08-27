@@ -4,14 +4,17 @@ import { fetchGenre } from "../actions";
 import GenreItem from "./GenreITem";
 
 class GenreList extends Component {
+
   componentDidMount() {
-    this.props.fetchGenre();
+    this.props.fetchGenre(); //fetch genre on mount
   }
+
   renderGenre() {
     var { genres } = this.props;
+    //loop on genres and get genreitem of each one
     if(genres.length > 0){
       return genres.map((genre) => {
-        return <GenreItem genre_props={genre}  key={genre.id}/>;
+        return <GenreItem props={genre}  key={genre.id}/>; 
       });
     }
     return "...loading";

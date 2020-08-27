@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+
 class ArtistDetails extends Component {
   render() {
     const { artist } = this.props;
@@ -22,4 +24,4 @@ class ArtistDetails extends Component {
   }
 }
 
-export default ArtistDetails;
+export default connect()(ArtistDetails);

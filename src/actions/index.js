@@ -1,7 +1,6 @@
 import deezer from "../api/deezer";
 export const FETCH_GENRE = "FETCH_GENRE";
 export const FETCH_ARTSITS = "FETCH_ARTSITS";
-export const CLEAR_STATE = "CLEAR_STATE";
 
 export const fetchGenre = () => {
   const data = deezer.get("/genre");
@@ -19,10 +18,3 @@ export const fetchArtists = (id) => {
   };
 };
 
-export const clearState = () => {
-  const data = [];
-  return {
-    type: CLEAR_STATE,
-    payload: data,
-  };
-};

@@ -1,17 +1,17 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Modal, Button } from "antd";
-import { Route } from "react-router-dom";
 import GenreArtists from "./GenreArtists";
 class GenreItem extends Component {
-  state = { visible: false };
-  prevId = "";
+
+  state = { visible: false }; //modal state
+
   showModal = (id) => {
     this.setState({
       visible: true,
     });
-    window.history.replaceState(null, null, `${id}`);
-    this.prevId = id;
+    window.history.replaceState(null, null, `${id}`); //change url to add id without reload 
   };
 
   handleCancel = (e) => {
@@ -21,30 +21,26 @@ class GenreItem extends Component {
     this.handleClose();
   };
   handleClose = (e) => {
-    // const modal = Modal.info();
 
-    window.history.replaceState({}, document.title, "/" + "");
+    window.history.replaceState({}, document.title, "/" + ""); //change url to remove id without reload 
 
-    // debugger
-    // Modal.getContainer();
-    // Modal.destroy();
   };
 
   render() {
-    const { genre_props } = this.props;
-    const { id, name, picture_big, type } = genre_props;
-
+    const { props } = this.props;
+    let { id , name, picture_big, type } = props;
     return (
-      <div className="col-12 col-md-6 col-lg-4">
+      <div className="col-12 col-md-4 col-lg-3">
         <div className="single-show-item mb-30">
           <img src={picture_big} alt="" />
           <div className="overlay-content">
             <div className="text-center">
               <span>{type}</span>
 
-             <Link to={`/${id}`} target="_blank"><h5>{name}</h5></Link> 
+             <Link to={`/${id}`} target="_blank" className="link"><h5>{name}</h5></Link> 
+             
               <Button
-                className="mt-2"
+                className="mt-2 btn  btn-pink "
                 type="primary"
                 onClick={() => {
                   this.showModal(id);
@@ -52,13 +48,14 @@ class GenreItem extends Component {
               >
                 Show artists
               </Button>
-              <Modal
+              
+             
+            </div>
+          </div>
+          <Modal
                 style={{ top: 20 }}
                 width={900}
-                preserve={false}
-                forceRender={true}
                 footer={null}
-                destroyOnClose={true}
                 title="Artists"
                 visible={this.state.visible}
                 onCancel={this.handleCancel}
@@ -66,12 +63,11 @@ class GenreItem extends Component {
               >
                 {<GenreArtists id={id} />}
               </Modal>
-            </div>
-          </div>
         </div>
       </div>
     );
   }
 }
 
-export default GenreItem;
+export default connect()(GenreItem);
+

@@ -4,7 +4,7 @@ import { fetchArtists } from "../actions";
 import ArtistDetials from "./ArtistDetails";
 
 class GenreArtists extends Component {
-    update=false;
+    update=false; //component will update flag
   componentDidMount() {
     const { id } = this.props;
     this.props.fetchArtists(id);
@@ -15,9 +15,8 @@ componentWillUpdate(){
 }
   renderArtists() {
     var { artists } = this.props;
-    // pathname
-    // window.onhashchange
-    if (artists.length > 0 && this.update) {
+    //prevent draw prev artists 
+    if (artists.length > 0 && this.update) { 
       return artists.map((artist) => {
         return <ArtistDetials artist={artist} key={artist.id} />;
       });
